@@ -61,7 +61,7 @@ gapminder %>%
     tail()
 
 # for those who have used Base R before...
-gapminder[gapminder$year==2007,]
+gapminder[gapminder$year==min(gapminder$lifeExp),]
 # or
 with(gapminder, gapminder[lifeExp==min(lifeExp),])
 
