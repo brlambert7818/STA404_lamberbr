@@ -1,5 +1,8 @@
 # sta404-R-comparing-distributions-BLANK-04sep17.R
 
+########################## Notes ##########################
+
+
 # save work in class subdirectory
 #setwd("/home/baileraj/sta404")
 
@@ -160,15 +163,46 @@ ggplot(myDF, aes(x=fgroup, y=response, color=fgroup)) +
 
 #  1. create a data frame with these 3 years of data and Asia
 
+Asia_subset <- gapminder %>%
+    filter(continent=="Asia") %>%
+    filter(year %in% c(1957, 1982, 2007))
+table(Asia_subset$year)
+
 #  2. generate plot of the data for the three years - add jitter to the plot
+
+ggplot() + geom_jitter(data=Asia_subset, aes(x=as.factor(year),y=lifeExp)) 
 
 #  3. generate a boxplot to compare life expectancy between the 3 years
 
+ggplot() + geom_boxplot(data=Asia_subset, aes(x=as.factor(year),y=lifeExp))
+
 #  4. generate a violin plot to compare life expectancy distribution changes
+
+ggplot(Asia_subset, aes(x=as.factor(year), y=lifeExp, color=as.factor(year))) +
+    geom_violin()
 
 #  5. superimpose violin plot on the jittered points
 
+ggplot(Asia_subset, aes(x=as.factor(year), y=lifeExp, color=as.factor(year))) +
+    geom_violin() +
+    geom_jitter(alpha=0.4) 
+
 #  6. clean up the plot to make it better for sharing
+
+ggplot(Asia_subset, aes(x=as.factor(year), y=lifeExp, color=as.factor(year))) +
+    geom_violin() +
+    geom_jitter(alpha=0.4) +
+    labs(x="Year", y="Life Expectancy (years)", title = "Life Expectancy by Year for Asian Countries",
+         caption="Source:  Jennifer Bryan (2015). gapminder: Data from Gapminder. R package version 
+         0.2.0.")
 
 #  7.  what is your conclusion from your analysis?
 
+# The life expectancy rose dramtically for Asian countries between the years 1957 
+# and 2007. Changes in modality are also apparent over this time range. In 1957 
+# the disttribution appears to be bimodal with the the lower mode mode retaining 
+# most of the density. Then, in 1982 we see a shift to a unimodal distribtution
+# that is actaully skewed left, showing that the average life expectancy is rising. 
+# Finally, 2007 shows another bimodal distribution like 1957, however, this distribution
+# skewed left, again showing a rise in the life expectancy over time. 
+# has 
