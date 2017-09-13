@@ -70,7 +70,7 @@ ggplot(fev_DF,aes(x=age.yrs, y=ht.in)) +
 # linear regression
 
 ggplot(fev_DF,aes(x=age.yrs, y=ht.in)) + 
-    geom_jitter(width=.25) +
+    geom_jitter(width=.25, shape=1) +
     geom_smooth(method="lm")
 
 # fitting a linear model
