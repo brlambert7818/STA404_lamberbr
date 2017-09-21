@@ -20,7 +20,6 @@ library(read)
 
 fev_DF <- read.table("/Users/brianlambert/Desktop/STA404/Module_3/fev_data.txt", header=T)
 manatee_DF <- read.csv("/Users/brianlambert/Desktop/STA404/Module_3/manatee-updateTF.csv", header=T)
-lakeDepth_DF <- read.csv("/Users/brianlambert/Desktop/STA404/Module_3/lake-do-depth.csv", header=T)
 
 head(fev_DF)
 
@@ -247,6 +246,23 @@ ggplot(oring_DF, aes(x=TempF, y=ind_distress)) +
 # Lab Exercise
 
 #work with the lake-do-depth data
+lakeDepth_DF <- read.csv("/Users/brianlambert/Desktop/STA404/Module_3/lake-do-depth.csv", header=T)
+str(lakeDepth_DF)
 
-#display the fev_DF data with superimposed loess smooth separate for girls and boys
+#display the lake-do-depth data with superimposed loess smooth 
+# seperate for Tahoe Keys and Eagle
 
+ggplot(lakeDepth_DF, aes(x = depth, y = dis_oxygen, color = factor(lakeid))) +
+    geom_point() +
+    geom_smooth(method="loess", se = F, alpha = 0.4) +
+    theme( panel.grid.major = element_blank(),
+           panel.grid.minor = element_blank(),
+           panel.border = element_blank(),
+           panel.background = element_blank()) 
+
+
+# log10(DO) vs depth 
+ggplot(lakeDepth_DF, aes(x = depth, y = dis_oxygen, color = factor(lakeid))) +
+    geom_point() +
+    geom_smooth(method="loess", se = F) +
+    scale_y_log10()
