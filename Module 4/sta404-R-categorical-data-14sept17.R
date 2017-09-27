@@ -397,7 +397,7 @@ lp_graph <- GDPcombo %>%
     filter(year==2007) %>% 
     ggplot(aes(ContinentTotalGDP, fct_reorder(continent, ContinentTotalGDP))) + 
     geom_point(size=3) +
-    geom_segment(aes(yend=continent), xend=0) +
+    geom_segment(aes(yend=continent), xend=0, alpha = 0.5) +
     scale_y_discrete(name=element_blank()) +
     scale_x_continuous(name="Total GDP ($Trillion))",
                        breaks=1000000000000*c(5,10,15,20),
